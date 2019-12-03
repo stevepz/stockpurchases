@@ -7,7 +7,7 @@ export default function Header(props) {
       <div id="header-link-div">
         <Link id="header-link" className="header-link" to="/"><button className="home-button">Home</button></Link>
       </div>
-      <h1 className="header-title">Where - Fit</h1>
+      <h1 className="header-title">Stock Track</h1>
 
 
       {props.user.username && (

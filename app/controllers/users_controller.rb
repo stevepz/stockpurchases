@@ -10,16 +10,20 @@ class UsersController < ApplicationController
   end
 
   def show
- 
+    @user.password_digest=''
     render json: @user, include: {stocks: {include: :purchases}}, status: :ok
   end
 
   def create
     @user = User.new(user_params)
-    # puts "two", user_params
-    # puts "four", @user.username, @user.password, @user.password_digest, @user.save, @user.errors
+    #   puts "two", user_params
+    # puts "four", @user.username, params[:password], params[:username], @user.password, 
+    # @user.password_digest, @user.save, @user.errors, user_params
+
     if @user.save
-      render json: @user, status: :created, location: @user
+      token = encode(id: @user.id, username: @user.username)
+      render json: {token: token , user: {id: @user.id, username: @user.username} }, status: :ok
+      # render json: @user, status: :created, location: @user
     else
       render json: @user.errors , status: :unprocessable_entity
     end
@@ -28,6 +32,7 @@ class UsersController < ApplicationController
   def update
     
     if @user.update(user_params)
+      @user.password_digest=''
       render json: @user, status: :ok
     else
       render json: { errors: @user.errors }, status: :unprocessable_entity
@@ -48,6 +53,7 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:username, :password)
+    # puts "this one ", :username, :password
   end
 
 
