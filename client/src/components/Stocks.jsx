@@ -13,8 +13,17 @@ class Stocks extends Component {
     this.props.getData(this.props.currentUser.id);
   }
 
+  sumPurchases = (purchases) => {
+    let sum = 0
+    purchases.map(purchase => (
+      sum = sum + purchase.qty
+    ))
+    return (sum)
+  }
+
   render() {
     const { user } = this.props;
+    // debugger
     return (
       <div>
         <h1>Stocks</h1>
@@ -27,6 +36,7 @@ class Stocks extends Component {
                   key={stock.id}
                   className="stock-line"
                   onClick={(e) => {
+                    // this.props.setStockId(stock.id)
                     this.props.history.push(`/users/${user.id}/stocks/${stock.id}/edit`);
                     window.scrollTo(0, 0);
                   }}>
@@ -34,9 +44,28 @@ class Stocks extends Component {
                     <p>{stock.stockname}</p>
                     <p>{stock.stockticker}</p>
                     <p>{stock.comment}</p>
+
+                    {stock.purchases
+                      ?
+                      <>
+                        <p>
+                          {this.sumPurchases(stock.purchases)}
+                        </p>
+                      </>
+                      :
+                      <>
+                      </>
+                    }
+
                   </h3>
                 </div>
-                <Link id={stock.id} className="stock-link" to={`/users/${user.id}/stocks/${stock.id}/purchases/add`}><button className="stock-link">Add a Purchase</button></Link>
+
+                {/* <button onClick={() => {
+                  this.props.setupStockToPurchase(stock.id);
+                }}>Purchase Stock</button> */}
+
+
+
               </div>
             ))
             }
@@ -46,7 +75,7 @@ class Stocks extends Component {
           </>
         }
         <Link id="stock-add" className="header-link" to={`/users/${user.id}/stocks/add`}><button className="home-button">Add Stock</button></Link>
-      </div >
+      </div>
     )
   }
 }

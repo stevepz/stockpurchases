@@ -81,18 +81,9 @@ export const showUser = async (id) => {
 //   return resp.data
 // }
 
-// ============== Location ===============
+// ============== ===============
 
 
-// export const indexLocation = async (id, getData) => {
-//   const resp = await api.get(`/user/${id}/location`, getData);
-//   return resp.data
-// }
-
-// export const showLocation = async (id, getData) => {
-//   const resp = await api.get(`/user/:id/location/${id}`, getData);
-//   return resp.data
-// }
 
 export const addStock = async (id, postData) => {
   const resp = await api.post(`/users/${id}/stocks`, postData);
@@ -100,7 +91,6 @@ export const addStock = async (id, postData) => {
 }
 
 export const editStock = async (id, putData) => {
-  console.log(putData)
   const resp = await api.put(`/users/${putData.user_id}/stocks/${putData.id}`, putData);
   return resp.data
 }
@@ -111,34 +101,18 @@ export const deleteStock = async (id, user_id) => {
 }
 
 
-// // ============== Activity ===============
+// { user: registerData })
+export const addPurchase = async (user_id, stock_id, postData) => {
+  const resp = await api.post(`/users/${user_id}/stocks/${stock_id}/purchases`, { purchase: postData });
+  return resp.data
+}
 
+export const editPurchase = async (user_id, putData) => {
+  const resp = await api.put(`/users/${user_id}/stocks/${putData.stock_id}/purchases/${putData.id}`, putData);
+  return resp.data
+}
 
-// export const indexActivity = async (userId, locationId) => {
-//   const resp = await api.get(`/user/${userId}/location/${locationId}/activity`, locationId);
-//   return resp.data
-// }
-
-// export const showActivity = async (id, getData) => {
-//   const resp = await api.get(`/user/${id}/location/${id}/activity/${id}`, getData);
-//   return resp.data
-// }
-
-
-// export const postActivity = async (userId, locationId, postData) => {
-//   const resp = await api.post(`/user/${userId}/location/${locationId}/activity`, postData);
-
-//   return resp.data
-// }
-
-// export const putActivity = async (userId, putData) => {
-
-
-//   const resp = await api.put(`/user/${userId}/location/${putData.location_id}/activity/${putData.id}`, putData);
-//   return resp.data
-// }
-
-// export const destroyActivity = async (id, deleteData) => {
-//   const resp = await api.delete(`/user/${id}/location/${id}/activity/${id}`, deleteData);
-//   return resp.data
-// }
+export const deletePurchase = async (user_id, stock_id, id) => {
+  const resp = await api.delete(`/users/${user_id}/stocks/${stock_id}/purchases/${id}`);
+  return resp.data
+}

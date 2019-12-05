@@ -3,27 +3,32 @@ import { Link } from 'react-router-dom';
 
 export default function Header(props) {
   return (
-    <div id="header">
-      <div id="header-link-div">
-        <Link id="header-link" className="header-link" to="/"><button className="home-button">Home</button></Link>
-      </div>
-      <h1 className="header-title">Stock Track</h1>
+    <div>
+      <div id="header">
 
-
-      {props.user.username && (
-        <div id="header-links-loggedin">
-          <h2 id="header-welcome">Welcome {props.user.username}</h2>
-          <button
-            className="header-logout"
-            onClick={props.handleLogout}>Logout</button>
+        <div id="header-link-div">
+          <Link id="header-link" className="header-link" to="/"><button className="home-button">Home</button></Link>
         </div>
-      )}
-      {/* {!props.user.username && (
+        <div id="header-link2-div">
+          <h1 className="header-title">Stock Track</h1>
+        </div>
 
-        <Link id="header-login" className="header-link"
-          to="/login">Account</Link>
-      )} */}
+        {
+          props.user.username && (
+            <div id="header-links-loggedin">
 
+              <button
+                className="header-logout"
+                onClick={props.handleLogout}>Logout</button>
+            </div>
+          )
+        }
+      </div>
+      {
+        props.user.username && (
+          <h2 id="header-welcome">Welcome {props.user.username}</h2>
+        )
+      }
     </div>
   )
 }

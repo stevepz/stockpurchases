@@ -7,7 +7,8 @@ import Register from "./components/Register";
 import Stocks from "./components/Stocks";
 import StocksAdd from "./components/StocksAdd";
 import StocksEdit from "./components/StocksEdit";
-
+import PurchaseAdd from "./components/PurchaseAdd";
+import PurchaseEdit from "./components/PurchaseEdit";
 
 
 import {
@@ -17,7 +18,10 @@ import {
   showUser,
   addStock,
   editStock,
-  deleteStock
+  deleteStock,
+  addPurchase,
+  editPurchase,
+  deletePurchase
 } from "./services/api-helper";
 
 
@@ -28,7 +32,9 @@ class App extends React.Component {
 
       user: {},
       stock: {},
+      stockId: '',
       purchase: {},
+      purchaseId: '',
       currentUser: '',
       currentStock: '',
       currentPurchase: '',
@@ -44,6 +50,14 @@ class App extends React.Component {
         stockticker: '',
         comment: '',
         user_id: ''
+      },
+
+      purchaseFormData: {
+        purchasedate: '',
+        qty: 0,
+        pricepaid: 0,
+        comment: '',
+        stock_id: ''
       }
     }
   }
@@ -160,6 +174,106 @@ class App extends React.Component {
     this.props.history.push('/users/${user.id}/stocks')
   }
 
+  // *******************************************
+
+  setStockId = (stockId) => {
+    this.setState({ stockId });
+    const stock = this.state.user.stocks.find(el => el.id === parseInt(stockId));
+    this.setState({ stock });
+  }
+
+
+  resetPurchaseForm = () => {
+    // const today = new Date()
+    // console.log('today', today)
+    this.setState({
+      purchaseFormData: {
+        purchasedate: "",
+        qty: 0,
+        pricepaid: 0,
+        comment: '',
+        stock_id: ''
+      }
+    }
+    )
+  }
+
+  handlePurchaseChange = (e) => {
+    const { name, value } = e.target;
+    const stock_id = this.state.stockId
+    this.setState(prevState => ({
+      purchaseFormData: {
+        ...prevState.purchaseFormData,
+        [name]: value
+      }
+    }))
+    this.setState(prevState => ({
+      purchaseFormData: {
+        ...prevState.purchaseFormData,
+        stock_id
+      }
+
+    }))
+  }
+
+  setupStockToPurchase(stockid) {
+    this.setStockId(stockid);
+    this.props.history.push(`/users/${this.state.currentUser.id}/stocks/${this.state.stockid}/purchases/add`);
+  }
+
+  handleAddPurchase = async (e) => {
+    e.preventDefault();
+    const purchase = await addPurchase(this.state.currentUser.id, this.state.stockId, this.state.purchaseFormData);
+    this.setState({ purchase });
+    this.resetPurchaseForm()
+    const user = await showUser(this.state.currentUser.id);
+    this.setState({ user });
+    this.props.history.push(`/users/${this.state.currentUser.id}/stocks/${this.state.stockId}/edit`)
+  }
+
+  handleEditPurchase = async (e) => {
+    e.preventDefault();
+    const stock = await editPurchase(this.state.purchase.id, this.state.purchaseFormData);
+    const user = await showUser(this.state.currentUser.id);
+    this.setState({ user });
+    this.props.history.push(`/users/${this.state.currentUser.id}/stocks/${this.state.stock.id}/edit`)
+
+    // `/users/${props.currentUser.id}/stocks/${props.stockId}/edit`
+
+  }
+  mountPurchaseEditForm = async (id) => {
+    //need stock id and purchase id
+    const purchases = this.state.stock.purchases
+    const purchase = purchases.find(el => el.id === parseInt(id));
+    this.setState({
+      purchaseFormData: purchase
+    });
+    this.setState({
+      purchase
+    });
+  };
+
+  handleDeletePurchase = async (id) => {
+    //need stock id and purchase id
+    await deletePurchase(this.state.currentUser.id, this.state.stockId, id);
+    this.getData()
+    this.props.history.push('/users/${user.id}/stocks')
+  }
+
+
+  setupPurchase = (purchaseId) => {
+    this.setState({ purchaseId });
+    this.props.history.push(`/users/${this.state.user.id}/stocks/${this.state.stockId}/purchases/${purchaseId}/edit`);
+    // window.scrollTo(0, 0);
+  }
+
+
+  setPurchaseId = (purchaseId) => {
+    this.setState({ purchaseId });
+    const purchase = this.state.stock.purchases.find(el => el.id === parseInt(purchaseId));
+    this.setState({ purchase });
+  }
+
   render() {
 
     return (
@@ -191,6 +305,9 @@ class App extends React.Component {
             currentUser={this.state.currentUser}
             getData={this.getData}
             user={this.state.user}
+            setStockId={this.setStockId}
+            stockId={this.state.stockId}
+            setupStockToPurchase={this.setupStockToPurchase}
           />}
         />
         <Route
@@ -198,11 +315,12 @@ class App extends React.Component {
           path="/users/:id/stocks/add"
           render={() => <StocksAdd
             handleAddStock={this.handleAddStock}
-            handleStockChange={this.stockHandleChange}
+            handleStockChange={this.handleStockChange}
             stockFormData={this.state.stockFormData}
             currentUser={this.state.currentUser}
             user={this.user}
             resetStockForm={this.resetStockForm}
+
           />}
         />
         <Route
@@ -210,7 +328,6 @@ class App extends React.Component {
           path="/users/:id/stocks/:id/edit"
           render={(props) => {
             const { id } = props.match.params;
-            console.log('stock', this.state.user)
             const stock = this.state.user.stocks.find(el => el.id === parseInt(id));
             return <StocksEdit
               id={id}
@@ -221,6 +338,45 @@ class App extends React.Component {
               mountEditForm={this.mountStockEditForm}
               handleEditStock={this.handleEditStock}
               handleDeleteStock={this.handleDeleteStock}
+              setStockId={this.setStockId}
+              stockId={this.state.stockId}
+              setupPurchase={this.setupPurchase}
+            />
+          }}
+        />
+
+        <Route
+          exact
+          path="/users/:id/stocks/:id/purchases/add"
+          render={() => <PurchaseAdd
+            handleAddPurchase={this.handleAddPurchase}
+            handlePurchaseChange={this.handlePurchaseChange}
+            purchaseFormData={this.state.purchaseFormData}
+            currentUser={this.state.currentUser}
+            user={this.state.user}
+            resetPurchaseForm={this.resetPurchaseForm}
+            stockId={this.state.stockId}
+          />}
+        />
+        <Route
+          exact
+          path="/users/:id/stocks/:id/purchases/:id/edit"
+          render={(props) => {
+            const { id } = props.match.params;
+
+            // const purchase = this.state.user.stocks.purchases.find(el => el.id === parseInt(id));
+            return <PurchaseEdit
+              id={id}
+              purchase={this.state.purchase}
+              stock={this.state.stock}
+              user={this.state.user}
+              handlePurchaseChange={this.handlePurchaseChange}
+              purchaseFormData={this.state.purchaseFormData}
+              mountEditForm={this.mountPurchaseEditForm}
+              handleEditPurchase={this.handleEditPurchase}
+              handleDeletePurchase={this.handleDeletePurchase}
+              setPurchaseId={this.setPurchaseId}
+              purchaseId={this.state.purchaseId}
             />
           }}
         />

@@ -1,22 +1,40 @@
 .App {
   text-align: center;
+  background-position: top;
+  background-image: url(./images/bull3.jpg) ;
+  background-size: cover;
+  height: 50em;
+
 }
 
-.App-logo {
-  height: 40vmin;
+#header{
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.home-button{
+color: orangered;
+background: transparent;
+font-size: 2em;
+font-weight: 700;
+padding-top: .75em;
+border: none
 }
-
-.App-link {
-  color: #09d3ac;
+.header-title{
+  font-size: 2em;
+  width: 100%;
+  color: orangered;
+}
+.header-logout{
+color: orangered;
+background: transparent;
+font-size: 2em;
+font-weight: 700;
+padding-top: .75em;
+border: none
+}
+#header-welcome{
+  color: orangered;
+  text-align: center;
+  width: 100%;
 }

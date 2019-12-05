@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
-const StockAdd = (props) => {
-  if (props.stockFormData.name) {
+const StocksAdd = (props) => {
+  if (props.stockFormData.id) {
     props.resetStockForm()
   }
 
@@ -13,12 +14,12 @@ const StockAdd = (props) => {
       <hr />
       <form onSubmit={props.handleAddStock} >
         <p>Stock Name:</p>
-        <input name="stockname" type="text" value={props.stockFormData.stockname} onChange={props.handleStockChange} />
+        <input name="stockname" required type="text" value={props.stockFormData.stockname} onChange={props.handleStockChange} />
         <p>Ticker:</p>
-        <input name="stockticker" type="text" value={props.stockFormData.stockticker} onChange={props.handleStockChange} />
+        <input name="stockticker" required type="text" value={props.stockFormData.stockticker} onChange={props.handleStockChange} />
         <p>Comment:</p>
-        {/* <textarea name="comment" value={props.stockFormData.comment} onChange={props.handleStockChange} ></textarea> */}
-        <input name="comment" type="text" value={props.stockFormData.comment} onChange={props.handleStockChange} />
+        <textarea name="comment" onChange={props.handleStockChange} value={props.stockFormData.comment}></textarea>
+        {/* <input name="comment" type="text" value={props.stockFormData.comment} onChange={props.handleStockChange} /> */}
 
         <hr />
         <button>Add</button>
@@ -30,4 +31,4 @@ const StockAdd = (props) => {
   );
 }
 
-export default StockAdd;
+export default StocksAdd;

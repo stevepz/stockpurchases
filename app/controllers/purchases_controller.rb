@@ -49,6 +49,8 @@ class PurchasesController < ApplicationController
   end
   
   def purchase_params
+    puts params
+    puts 'here'
     params.require(:purchase).permit(:id, :purchasedate, :qty, :pricepaid, :comment, :stock_id)
   end
 
