@@ -1,3 +1,22 @@
+
+:root {
+  --text-light: rgb(255, 255, 255);
+  --text-grey: rgb(230, 230, 230);
+  --text-soft: rgb(211, 248, 255);
+  --text-color:  orangered;
+  --text-dark: rgb(0, 0, 0);
+  --bg-light: rgb(255, 255, 255);
+  --bg-grey: rgb(230, 230, 230);
+  --bg-soft: #ffebee;
+  --bg-dark: #2d3436;
+  --nav-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
+  --element-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.25);
+  --text-shadow: 5px 5px 0.2rem rgba(0, 0, 0, 0.25);
+
+  --font-prime: 'Raleway', sans-serif;
+  --font-section: 'Open Sans', sans-serif; 
+}
+
 .App {
   text-align: center;
   background-position: top;
@@ -13,7 +32,7 @@
 }
 
 .home-button{
-color: orangered;
+color: var(--text-color);
 background: transparent;
 font-size: 2em;
 font-weight: 700;
@@ -23,18 +42,93 @@ border: none
 .header-title{
   font-size: 2em;
   width: 100%;
-  color: orangered;
+  color: var(--text-color);
 }
 .header-logout{
-color: orangered;
-background: transparent;
-font-size: 2em;
-font-weight: 700;
-padding-top: .75em;
-border: none
+  color: var(--text-color);
+  background: transparent;
+  font-size: 2em;
+  font-weight: 700;
+  padding-top: .75em;
+  border: none
 }
 #header-welcome{
-  color: orangered;
+  color: var(--text-color);
   text-align: center;
   width: 100%;
+ }
+  .auth-container h2{
+    color: var(--text-color);
+    font-size: 2em;
+
+  }
+
+ .auth-container form{
+   
+  color: var(--text-color);
+  align-content: center;
+  }
+
+  .login-user{
+    /* display: inline; */
+    /* grid-template-columns:  1fr 1fr;  */
+   
+    font-size: 2em;
+    color: var(--text-color);
+    }
+    
+ .login-fields{
+   height: 2em;
+   align-content: center;
+ 
+ }
+ .login-user{
+  /* display: grid;
+  grid-template-columns:  1fr 1fr;  */
+  font-size: 2em;
+  color: var(--text-color);
+  }
+  
+
+  .login-login-button, .login-register-button{
+    border: none;
+    background-color: transparent;
+    color: var(--text-color); 
+    font-size: 3em;
+    text-decoration: none;
+  }
+  .login-login-button, .login-register-button{
+    padding: 2em;
+  }
+
+
+
+
+
+
+
+.stock-titles{
+  color: var(--text-color);
+  text-align: center;
+  width: 100%;
+}
+.stock-title-div{
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr 1fr; 
+}
+
+.stock-title{
+  color: var(--text-color);
+  font-size: 2em;
+  font-weight: 700; 
+  color: var(--text-color);
+}
+
+
+.stock-line{
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr 1fr; 
+  color: var(--text-color);
+  font-size: 2em;
+  font-weight: 400; 
 }

@@ -7,19 +7,28 @@ const Login = (props) => {
 
   return (
     <div className="auth-container">
-      <h2>login</h2>
-      <hr />
+      <h2>Login</h2>
+
       <form onSubmit={(e) => {
         e.preventDefault();
         props.handleLogin();
       }} >
-        <p>Username:</p>
-        <input name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
-        <p>Password:</p>
-        <input name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
-        <hr />
-        <button>Login</button>
-        <Link to="/register">Register</Link>
+        <div className="login-user">
+          <p>Username:</p>
+          <input className="login-fields" name="username" type="text" value={props.formData.username} onChange={props.handleChange} />
+        </div>
+
+        <div className="login-user">
+          <p>Password:</p>
+          <input className="login-fields" name="password" type="password" value={props.formData.password} onChange={props.handleChange} />
+        </div>
+
+        <div className="login-user-buttons">
+          <div className="login-login-button-div">
+            <button className="login-login-button">Click Here to Login</button>
+          </div>
+          <Link className="login-register-button" to="/register">Click Here to Register</Link>
+        </div>
       </form>
     </div>
   );

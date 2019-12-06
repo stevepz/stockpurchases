@@ -26,12 +26,19 @@ class Stocks extends Component {
     // debugger
     return (
       <div>
-        <h1>Stocks</h1>
+        <h1 className="stock-titles">Stocks</h1>
         {user.stocks
           ?
           <>
+            <div className="stock-title-div">
+              <p className="stock-title">Stock Name</p>
+              <p className="stock-title">Stock Ticker</p>
+              <p className="stock-title">Comment</p>
+              <p className="stock-title">Qty</p>
+            </div>
             {user.stocks.map(stock => (
               <div key={stock.id}>
+
                 <div
                   key={stock.id}
                   className="stock-line"
@@ -40,24 +47,24 @@ class Stocks extends Component {
                     this.props.history.push(`/users/${user.id}/stocks/${stock.id}/edit`);
                     window.scrollTo(0, 0);
                   }}>
-                  <h3>
-                    <p>{stock.stockname}</p>
-                    <p>{stock.stockticker}</p>
-                    <p>{stock.comment}</p>
 
-                    {stock.purchases
-                      ?
-                      <>
-                        <p>
-                          {this.sumPurchases(stock.purchases)}
-                        </p>
-                      </>
-                      :
-                      <>
-                      </>
-                    }
+                  <p>{stock.stockname}</p>
+                  <p>{stock.stockticker}</p>
+                  <p>{stock.comment}</p>
 
-                  </h3>
+                  {stock.purchases
+                    ?
+                    <>
+                      <p>
+                        {this.sumPurchases(stock.purchases)}
+                      </p>
+                    </>
+                    :
+                    <>
+                    </>
+                  }
+
+
                 </div>
 
                 {/* <button onClick={() => {
@@ -74,7 +81,7 @@ class Stocks extends Component {
           <>
           </>
         }
-        <Link id="stock-add" className="header-link" to={`/users/${user.id}/stocks/add`}><button className="home-button">Add Stock</button></Link>
+        <Link id="stock-add" className="add-stock" to={`/users/${user.id}/stocks/add`}><button className="home-button">Add New Stock</button></Link>
       </div>
     )
   }

@@ -17,8 +17,8 @@ const PurchaseEdit = (props) => {
 
   return (
     <div className="stock-add-container">
-      <h2>View/Edit/Delete Purchase</h2>
-      <hr />
+      <h2>View/Edit/Delete Purchase for {props.stock.stockname}</h2>
+
 
       <form onSubmit={props.handleEditPurchase} >
         <p>Purchase Date:</p>
@@ -30,7 +30,7 @@ const PurchaseEdit = (props) => {
         <p>Comment:</p>
         <textarea name="comment" onChange={props.handlePurchaseChange} value={props.purchaseFormData.comment}></textarea>
 
-        <hr />
+
         <button>Update Purchase</button>
       </form>
 

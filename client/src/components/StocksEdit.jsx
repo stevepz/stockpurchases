@@ -37,6 +37,12 @@ const StocksEdit = (props) => {
       {stock.purchases
         ?
         <>
+          <div className="stock-title-div">
+            <p className="stock-title">Purchase Date</p>
+            <p className="stock-title">Number of Shares</p>
+            <p className="stock-title">Price per Share</p>
+            <p className="stock-title">Comment</p>
+          </div>
           {stock.purchases.map(purchase => (
             <div key={purchase.id}>
               <div
@@ -44,10 +50,10 @@ const StocksEdit = (props) => {
                 className="stock-line" onClick={(e) => {
                   props.setupPurchase(purchase.id)
                 }}>
-                <p>purchase date: {purchase.purchasedate} </p>
-                <p>number of shares: {purchase.qty}</p>
-                <p>price per share: {purchase.pricepaid} </p>
-                <p>comments: {purchase.comment} </p>
+                <p>{purchase.purchasedate} </p>
+                <p>{purchase.qty}</p>
+                <p>{purchase.pricepaid} </p>
+                <p>{purchase.comment} </p>
               </div>
             </div>
 
