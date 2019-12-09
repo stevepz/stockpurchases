@@ -1,33 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
+
+
 
 const StocksAdd = (props) => {
   if (props.stockFormData.id) {
     props.resetStockForm()
   }
 
+  if (parseInt(props.currentUser.id) < 1) {
+    props.noUser()
+  }
 
   return (
     <div className="stock-add-container">
       <h2>Add Stock</h2>
-      <hr />
-      <form onSubmit={props.handleAddStock} >
-        <p>Stock Name:</p>
-        <input name="stockname" required type="text" value={props.stockFormData.stockname} onChange={props.handleStockChange} />
-        <p>Ticker:</p>
-        <input name="stockticker" required type="text" value={props.stockFormData.stockticker} onChange={props.handleStockChange} />
-        <p>Comment:</p>
-        <textarea name="comment" onChange={props.handleStockChange} value={props.stockFormData.comment}></textarea>
-        {/* <input name="comment" type="text" value={props.stockFormData.comment} onChange={props.handleStockChange} /> */}
 
-        <hr />
-        <button>Add</button>
+      <form onSubmit={props.handleAddStock} >
+        <div className="stockadd-stocks">
+          <p>Stock Name:</p>
+          <input className="stockadd-stocks-button" name="stockname" required type="text" value={props.stockFormData.stockname} onChange={props.handleStockChange} />
+          <p>Ticker:</p>
+          <input className="stockadd-stocks-button" name="stockticker" required type="text" value={props.stockFormData.stockticker} onChange={props.handleStockChange} />
+        </div>
+
+        <div className="stockadd-stocks-comments">
+          <p>Comment:</p>
+          <textarea name="comment" onChange={props.handleStockChange} value={props.stockFormData.comment}></textarea>
+        </div>
+
+        <button>Add </button>
       </form>
-      <Link id="back" className="header-link" to={`/users/${props.currentUser.id}/stocks`}>
+      <Link id="back" className="back" to={`/users/${props.currentUser.id}/stocks`}>
         <button className="back">BACK</button>
       </Link>
-    </div>
+    </div >
   );
 }
 

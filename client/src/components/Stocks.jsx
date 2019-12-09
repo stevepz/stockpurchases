@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-// import EditTeacher from './EditTeacher'
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 class Stocks extends Component {
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
 
-  }
+  // }
 
   componentDidMount() {
+    if (parseInt(this.props.currentUser.id) < 1) {
+      this.props.noUser()
+    }
     this.props.getData(this.props.currentUser.id);
   }
+
+
+
 
   sumPurchases = (purchases) => {
     let sum = 0
@@ -21,7 +26,10 @@ class Stocks extends Component {
     return (sum)
   }
 
+
+
   render() {
+
     const { user } = this.props;
     // debugger
     return (
@@ -64,14 +72,7 @@ class Stocks extends Component {
                     </>
                   }
 
-
                 </div>
-
-                {/* <button onClick={() => {
-                  this.props.setupStockToPurchase(stock.id);
-                }}>Purchase Stock</button> */}
-
-
 
               </div>
             ))

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 
 
@@ -27,7 +27,9 @@ const Login = (props) => {
           <div className="login-login-button-div">
             <button className="login-login-button">Click Here to Login</button>
           </div>
-          <Link className="login-register-button" to="/register">Click Here to Register</Link>
+          <div className="login-register-button-div">
+            <Link className="login-register-button" to="/register">Click Here to Register</Link>
+          </div>
         </div>
       </form>
     </div>

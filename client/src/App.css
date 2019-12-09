@@ -1,48 +1,43 @@
 
 :root {
-  --text-light: rgb(255, 255, 255);
-  --text-grey: rgb(230, 230, 230);
-  --text-soft: rgb(211, 248, 255);
-  --text-color:  orangered;
-  --text-dark: rgb(0, 0, 0);
-  --bg-light: rgb(255, 255, 255);
-  --bg-grey: rgb(230, 230, 230);
-  --bg-soft: #ffebee;
-  --bg-dark: #2d3436;
-  --nav-shadow: 0 0px 10px rgba(0, 0, 0, 0.6);
-  --element-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.25);
-  --text-shadow: 5px 5px 0.2rem rgba(0, 0, 0, 0.25);
-
-  --font-prime: 'Raleway', sans-serif;
-  --font-section: 'Open Sans', sans-serif; 
+  
+  --text-color:white;
+  --text-color2: white;
+ 
 }
 
 .App {
   text-align: center;
   background-position: top;
-  background-image: url(./images/bull3.jpg) ;
+  background-image: url(./images/stock-market-3.jpg) ;
   background-size: cover;
-  height: 50em;
+  min-height: 60em;
 
+  text-align: center;
+  width: 100%;
+  z-index: 1;
 }
-
 #header{
+  /* position:fixed;
+  top: 0; */
+  width: 100%;
+  z-index: 1;
   display: grid;
   grid-template-columns:  1fr 1fr 1fr; 
 }
 
 .home-button{
-color: var(--text-color);
-background: transparent;
-font-size: 2em;
-font-weight: 700;
-padding-top: .75em;
-border: none
+  color: var(--text-color);
+  background: transparent;
+  font-size: 2em;
+  font-weight: 700;
+  padding-top: .75em;
+  border: none
 }
 .header-title{
-  font-size: 2em;
+  font-size: 2.4em;
   width: 100%;
-  color: var(--text-color);
+  color: var(--text-color2);
 }
 .header-logout{
   color: var(--text-color);
@@ -53,61 +48,66 @@ border: none
   border: none
 }
 #header-welcome{
-  color: var(--text-color);
+  color: var(--text-color2);
   text-align: center;
   width: 100%;
- }
-  .auth-container h2{
-    color: var(--text-color);
-    font-size: 2em;
+}
+#header-welcome{
+padding-top: 2em;
+}
 
-  }
+.auth-container {
+  z-index: .5;
+  padding-top: 4em;
+}
 
- .auth-container form{
-   
+.auth-container h2{
+  color: var(--text-color);
+  font-size: 2em;
+}
+
+.auth-container form{
   color: var(--text-color);
   align-content: center;
-  }
+}
 
-  .login-user{
-    /* display: inline; */
-    /* grid-template-columns:  1fr 1fr;  */
-   
-    font-size: 2em;
-    color: var(--text-color);
-    }
-    
- .login-fields{
-   height: 2em;
-   align-content: center;
- 
- }
- .login-user{
-  /* display: grid;
-  grid-template-columns:  1fr 1fr;  */
+.login-user{
   font-size: 2em;
   color: var(--text-color);
-  }
+}
+    
+.login-fields{
+  height: 2em;
+  align-content: center;
+
+}
+.login-user{
+
+  font-size: 2em;
+  color: var(--text-color);
+margin:0;
+
+
+}
   
 
-  .login-login-button, .login-register-button{
-    border: none;
-    background-color: transparent;
-    color: var(--text-color); 
-    font-size: 3em;
-    text-decoration: none;
-  }
-  .login-login-button, .login-register-button{
-    padding: 2em;
-  }
+.login-login-button, .login-register-button{
+  border: none;
+  background-color: transparent;
+  color: var(--text-color); 
+  font-size: 3em;
+  text-decoration: none;
+}
 
-
-
-
+.login-register-button-div{
+    margin-top: 5em;
+    padding-bottom: 4em;
+ }
 
 
 
 .stock-titles{
+  padding-top: 3em;
   color: var(--text-color);
   text-align: center;
   width: 100%;
@@ -121,9 +121,7 @@ border: none
   color: var(--text-color);
   font-size: 2em;
   font-weight: 700; 
-  color: var(--text-color);
 }
-
 
 .stock-line{
   display: grid;
@@ -131,4 +129,163 @@ border: none
   color: var(--text-color);
   font-size: 2em;
   font-weight: 400; 
+}
+
+
+
+
+.stock-add-container, .stock-edit-container{
+  padding-top: .5em;
+  color: var(--text-color);
+  font-size: 1.5em;
+}
+.stock-add-container form button, .stock-edit-container form button{
+  border: none;
+  background-color: transparent;
+  color: var(--text-color); 
+  font-size: 1.5em;
+  text-decoration: none;
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+.back{
+  background-color: transparent;
+  color: var(--text-color); 
+  font-size: 2.3em;
+  text-decoration: none;
+  font-size: 1em;
+  border: none;
+  /* margin-left: 1em; */
+}
+
+.stockadd-stocks{
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr 1fr; 
+  color: var(--text-color);
+  font-weight: 400; 
+  height: .5em;
+  padding-right: 2em;
+  /* align-content: top; */
+}
+
+.stockadd-stocks input {
+  /* margin-top: 2em; */
+}
+.stockadd-stocks p {
+  margin-top: .7em;
+justify-content: center;
+}
+
+.stockadd-stocks-button{
+  padding-top: 1em;
+  height: 1em;
+  font-size: 1em;
+  border: .1em solid white;
+  background: transparent;
+  color: var(--text-color);
+ 
+}
+.stockadd-stocks-comments textarea {
+  border: .1em solid white;
+  background: transparent;
+  color: var(--text-color);
+  font-weight: 400; 
+  font-size: 1em;
+}
+
+.stockadd-stocks-comments{
+  margin-top: 3em;
+  padding: 3em;
+  display: grid;
+  grid-template-columns:  1fr 1fr; 
+  color: var(--text-color);
+  font-weight: 400; 
+  
+}
+
+.add-stock {
+  padding-top: 1em;
+  height: 2em;
+  font-size: 1em;
+}
+
+.stocks-edit-button {
+  background-color: transparent;
+  color: white; 
+  text-decoration: none;
+  font-size: 5em;
+  border: none
+}
+
+.stocks-delete-button{
+  display: block;
+  background-color: transparent;
+  color: var(--text-color); 
+  text-decoration: none;
+  font-size: 1.2em;
+  border: none;
+  margin-left: 46%
+}
+.stock-purchase-container{
+  color: var(--text-color);
+  font-size: 1.2em;
+  font-weight: 700; 
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr 1fr; 
+  
+}
+.stock-purchase-title{
+  
+  color: var(--text-color);
+  font-size: 1.2em;
+  font-weight: 700; 
+}
+
+.purchase-line{
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr 1fr; 
+  color: var(--text-color);
+  font-size: 1.2em;
+  font-weight: 400; 
+}
+
+.purchase-add-button {
+  padding-top: 1em;
+  /* height: 2em; */
+  font-size: 1.2em;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  padding-right: 2em;
+  padding-bottom: 2em;
+}
+
+.purchase-edit-form{
+
+}
+
+.purchase-edit-date-line, .purchase-edit-share-line,
+.purchase-edit-price-line, .purchase-edit-comment-line{
+display: grid;
+grid-template-columns:  1fr 1fr; 
+font-size: 1.3em;
+align-content: top;
+margin-bottom: 1em;
+}
+.purchase-edit-date-line input, .purchase-edit-share-line input,
+.purchase-edit-price-line input, .purchase-edit-comment-line textarea{
+  height: 2em;
+  border: .1em solid white;
+  width: 75%;
+  color: var(--text-color);
+  background-color: transparent;
+  font-size: 1.1em;
+}
+.purchase-edit-date-line input{
+  margin-top: .3em;
+  font-size: 1.3em;
+}
+.purchase-edit-comment-line textarea{
+  height: 3em;
 }

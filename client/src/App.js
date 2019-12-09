@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Link, withRouter } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -133,6 +133,7 @@ class App extends React.Component {
     this.setState({ user });
   }
 
+
   handleStockChange = (e) => {
     const { name, value } = e.target;
     this.setState(prevState => ({
@@ -155,7 +156,9 @@ class App extends React.Component {
 
   handleEditStock = async (e) => {
     e.preventDefault();
-    const stock = await editStock(this.state.stock.id, this.state.stockFormData);
+
+    // const stock = await editStock(this.state.stock.id, this.state.stockFormData);
+    await editStock(this.state.stock.id, this.state.stockFormData);
     const user = await showUser(this.state.currentUser.id);
     this.setState({ user });
     this.props.history.push(`/users/${this.state.currentUser.id}/stocks`)
@@ -171,8 +174,13 @@ class App extends React.Component {
   handleDeleteStock = async (id) => {
     await deleteStock(id, this.state.currentUser.id);
     this.getData()
-    this.props.history.push('/users/${user.id}/stocks')
+    this.props.history.push(`/users/${this.state.currentUser.id}/stocks`)
   }
+
+  noUser = () => {
+    this.props.history.push('/')
+  }
+
 
   // *******************************************
 
@@ -233,7 +241,8 @@ class App extends React.Component {
 
   handleEditPurchase = async (e) => {
     e.preventDefault();
-    const stock = await editPurchase(this.state.purchase.id, this.state.purchaseFormData);
+    // const purchase = await editPurchase(this.state.purchase.id, this.state.purchaseFormData);
+    await editPurchase(this.state.purchase.id, this.state.purchaseFormData);
     const user = await showUser(this.state.currentUser.id);
     this.setState({ user });
     this.props.history.push(`/users/${this.state.currentUser.id}/stocks/${this.state.stock.id}/edit`)
@@ -257,7 +266,7 @@ class App extends React.Component {
     //need stock id and purchase id
     await deletePurchase(this.state.currentUser.id, this.state.stockId, id);
     this.getData()
-    this.props.history.push('/users/${user.id}/stocks')
+    this.props.history.push(`/users/${this.state.currentUser.id}/stocks`)
   }
 
 
@@ -308,6 +317,7 @@ class App extends React.Component {
             setStockId={this.setStockId}
             stockId={this.state.stockId}
             setupStockToPurchase={this.setupStockToPurchase}
+            noUser={this.noUser}
           />}
         />
         <Route
@@ -320,6 +330,7 @@ class App extends React.Component {
             currentUser={this.state.currentUser}
             user={this.user}
             resetStockForm={this.resetStockForm}
+            noUser={this.noUser}
 
           />}
         />
@@ -341,6 +352,7 @@ class App extends React.Component {
               setStockId={this.setStockId}
               stockId={this.state.stockId}
               setupPurchase={this.setupPurchase}
+              noUser={this.noUser}
             />
           }}
         />
@@ -356,6 +368,8 @@ class App extends React.Component {
             user={this.state.user}
             resetPurchaseForm={this.resetPurchaseForm}
             stockId={this.state.stockId}
+            noUser={this.noUser}
+            stock={this.state.stock}
           />}
         />
         <Route
@@ -377,6 +391,7 @@ class App extends React.Component {
               handleDeletePurchase={this.handleDeletePurchase}
               setPurchaseId={this.setPurchaseId}
               purchaseId={this.state.purchaseId}
+              noUser={this.noUser}
             />
           }}
         />
@@ -386,5 +401,13 @@ class App extends React.Component {
   }
 };
 
+// path = "/"
+// path = "/register"
+// path = "/users/:id/stocks"
+// path = "/users/:id/stocks/add"
+// path = "/users/:id/stocks/:id/edit"
+// path = "/users/:id/stocks/:id/purchases/add"
+// path = "/users/:id/stocks/:id/purchases/:id/edit"
 
 export default withRouter(App);
+

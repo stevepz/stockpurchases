@@ -1,25 +1,18 @@
 import axios from 'axios';
 
+// const baseUrl= "http://localhost:3000"
 const api = axios.create({
   baseURL: "http://localhost:3000"
 })
+// baseUrl: "https://stockpurchase.herokuapp.com/"
 
-// ============== Home ================
-
-// export const indexHome = async () => {
-//   const resp = await api.get(`/`);
-//   return resp.data
-// }
-
-// export const showHome = async (id, getData) => {
-//   const resp = await api.get(`/${id}`, getData);
-//   return resp.data
-// }
 
 // ============== Auth ================
 
 export const loginUser = async (loginData) => {
   try {
+    // console.log('here1', api)
+    // debugger
     const resp = await api.post('/auth/login', loginData)
     localStorage.setItem('authToken', resp.data.token);
     api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`
