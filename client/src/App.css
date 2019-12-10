@@ -12,6 +12,7 @@
   background-image: url(./images/stock-market-3.jpg) ;
   background-size: cover;
   min-height: 60em;
+  padding-bottom: 2em;
 
   text-align: center;
   width: 100%;
@@ -169,9 +170,7 @@ margin:0;
   /* align-content: top; */
 }
 
-.stockadd-stocks input {
-  /* margin-top: 2em; */
-}
+
 .stockadd-stocks p {
   margin-top: .7em;
 justify-content: center;
@@ -208,6 +207,7 @@ justify-content: center;
   padding-top: 1em;
   height: 2em;
   font-size: 1em;
+
 }
 
 .stocks-edit-button {
@@ -289,3 +289,14 @@ margin-bottom: 1em;
 .purchase-edit-comment-line textarea{
   height: 3em;
 }
+
+@media only screen 
+    and (max-width: 375px){
+body {
+  font-size: 60%;
+}
+.stockadd-stocks{
+  display: grid;
+  grid-template-columns:  1fr 1fr; 
+}
+    }

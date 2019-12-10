@@ -33,7 +33,7 @@ class Stocks extends Component {
     const { user } = this.props;
     // debugger
     return (
-      <div>
+      <div className="stocks-page">
         <h1 className="stock-titles">Stocks</h1>
         {user.stocks
           ?
