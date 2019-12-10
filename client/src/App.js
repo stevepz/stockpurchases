@@ -9,6 +9,7 @@ import StocksAdd from "./components/StocksAdd";
 import StocksEdit from "./components/StocksEdit";
 import PurchaseAdd from "./components/PurchaseAdd";
 import PurchaseEdit from "./components/PurchaseEdit";
+import cashRegister from "./sounds/CashRegister.mp3"
 
 
 import {
@@ -151,7 +152,11 @@ class App extends React.Component {
     this.resetStockForm()
     const user = await showUser(this.state.currentUser.id);
     this.setState({ user });
+    let sound = new Audio(cashRegister);
+    sound.play();
+
     this.props.history.push(`/users/${this.state.currentUser.id}/stocks`)
+
   }
 
   handleEditStock = async (e) => {
@@ -236,6 +241,8 @@ class App extends React.Component {
     this.resetPurchaseForm()
     const user = await showUser(this.state.currentUser.id);
     this.setState({ user });
+    let sound = new Audio(cashRegister);
+    sound.play();
     this.props.history.push(`/users/${this.state.currentUser.id}/stocks/${this.state.stockId}/edit`)
   }
 
@@ -284,6 +291,7 @@ class App extends React.Component {
   }
 
   render() {
+
 
     return (
       <div className="App">
