@@ -10,7 +10,7 @@ export default function Header(props) {
           <Link id="header-link" className="header-link" to="/"><button className="home-button">Home</button></Link>
         </div>
         <div id="header-link2-div">
-          <h1 className="header-title">Stock Track</h1>
+          <h1 className="header-title">Stock Purchase</h1>
         </div>
 
         {
